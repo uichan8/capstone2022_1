@@ -1,2 +1,6 @@
 # capstone2022_1
-capstone project
+# 요약
+2022년 1학기 정일엽 교수님 캡스톤 디자인 수업 'light24'조의 코드 파일입니다.  
+CCTV로부터 받아온 영상 정보로부터 object detection(YOLOX_tiny)를 시행하여 사람이 있는지 없는지를 탐지하고, 매장 내의 조명을 조절하여 에너지를 관리하는 프로젝트입니다
+
+
