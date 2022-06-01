@@ -37,7 +37,7 @@ class Sign(Base):
         self.mid_state = mid
     
     def eco_mode(self):
-        self.change_ceilling_state(100,40)
+        self.change_ceilling_state(100,0)
     
     def on_mode(self):
         self.change_ceilling_state(100,100)
