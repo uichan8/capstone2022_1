@@ -1,0 +1,39 @@
+//DB
+sudo apt install mariadb-server mariadb-client
+pip3 install pymysql
+
+//init DB(set ID and PASSWORDS)
+sudo mysql -u root
+use mysql;
+grant all privileges on *.* to 'project'@'uichan'identified by'1234';
+grant all privileges on *.* to 'project'@'localhost'identified by'1234';
+flush privileges;
+
+//make DB
+create database store;
+use store;
+
+//make table
+//temperture
+CREATE TABLE temp(
+datetime VARCHAR(20) NOT NULL,
+temp float(3) NULL,
+humi INT(2) NULL
+);
+alter table temp add primary key(datetime);
+
+//camera
+create table camera( 
+datetime VARCHAR(20) NOT NULL, 
+outcamera VARCHAR(2) NULL,
+incamera VARCHAR(2) NULL
+);
+alter table camera add primary key (datetime);
+
+//illuminance
+create table illuminance( 
+datetime VARCHAR(20) NOT NULL, 
+outillu INT(4) NULL,
+inillu INT(4) NULL
+);
+alter table illuminance add primary key (datetime); 

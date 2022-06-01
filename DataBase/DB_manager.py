@@ -13,15 +13,13 @@ class DB_manager:
         self.DB.commit()
 
     def read_last_temp(self):
-        self.cursor.execute("select * from temp order by time desc limit 1")
-        data = self.cursor.fetchall()
-        temp = None  #데이타 가공 해야됨
-        humi = None
-        return temp,humi
-
-    def update_detection(self,val):
-        #db만들것
-        pass
+        self.cursor.execute("select * from temp order by datetime desc")
+        result = self.cursor.fetchall()
+        print(result[0])
+        
+    def clear_temp(self):
+        self.cursor.execute("delete from temp")
+        self.DB.commit()
         
     def __del__(self):
         self.DB.close()

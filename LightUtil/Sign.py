@@ -1,5 +1,5 @@
-from Led import Led
-from Base import Base
+from LightUtil.Led import Led
+from LightUtil.Base import Base
 import time
 
 class Sign(Base):
@@ -23,27 +23,27 @@ class Sign(Base):
         for led in list:
             led.on(pwm)
 
-    def change_ceilling_state(self,main,mid):
+    def change_ceilling_state(self,main,sub):
         for i in range(1,30):
             main_light = self.main_state + (main - self.main_state)/30*i
-            mid_light  = self.mid_state + (mid - self.mid_state)/30*i
+            sub_light  = self.sub_state + (sub - self.sub_state)/30*i
             self.led_list_on(self.main_led,int(main_light))
-            self.led_list_on(self.sub_led,int(mid_light))
-            time.sleep(0.1)
+            self.led_list_on(self.sub_led,int(sub_light))
+            time.sleep(0.01)
         self.led_list_on(self.main_led,int(main))
-        self.led_list_on(self.sub_led,int(mid))
+        self.led_list_on(self.sub_led,int(sub))
 
         self.main_state = main
-        self.mid_state = mid
+        self.sub_state = sub
     
     def eco_mode(self):
-        self.change_ceilling_state(100,40)
+        self.change_ceilling_state(40,0)
     
     def on_mode(self):
-        self.change_ceilling_state(100,100)
+        self.change_ceilling_state(40,100)
     
     def off_mode(self):
         self.change_ceilling_state(0,0)
 
     def check_power(self):
-        return (self.main_state + self.mid_state) / 300 * self.max_power #대충한거라 나중에 수정해야함
+        return (self.main_state + self.sub_state) / 300 * self.max_power #대충한거라 나중에 수정해야함
