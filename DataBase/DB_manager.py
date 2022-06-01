@@ -6,6 +6,7 @@ class DB_manager:
         self.DB = sql.connect(host = 'localhost', user = 'root', password = '1234', db='store')
         self.cursor = self.DB.cursor()
     
+    #for temp table
     def update_temp(self, temp, humi):
         time_data = localtime(time())
         time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + str(time_data.tm_min)
@@ -13,15 +14,45 @@ class DB_manager:
         self.DB.commit()
 
     def read_last_temp(self):
-        self.cursor.execute("select * from temp order by time desc limit 1")
-        data = self.cursor.fetchall()
-        temp = None  #데이타 가공 해야됨
-        humi = None
-        return temp,humi
+        self.cursor.execute("select * from temp order by datetime desc")
+        result = self.cursor.fetchall()
+        print(result[0])
+        
+    def clear_temp(self):
+        self.cursor.execute("delete from temp")
+        self.DB.commit()
 
-    def update_detection(self,val):
-        #db만들것
-        pass
+    #for camera table
+    def update_camera(self, outcamera, incamera):
+        time_data = localtime(time())
+        time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + str(time_data.tm_min)
+        self.cursor.execute(f"insert into temp values('{time_str}','{outcamera}','{incamera}');")
+        self.DB.commit()
+
+    def read_last_camera(self):
+        self.cursor.execute("select * from camera order by datetime desc")
+        result = self.cursor.fetchall()
+        print(result[0])
+        
+    def clear_camera(self):
+        self.cursor.execute("delete from camera")
+        self.DB.commit()
+
+    #for illu table
+    def update_illu(self, outillu, inillu):
+        time_data = localtime(time())
+        time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + str(time_data.tm_min)
+        self.cursor.execute(f"insert into temp values('{time_str}','{outillu}','{inillu}');")
+        self.DB.commit()
+
+    def read_last_illu(self):
+        self.cursor.execute("select * from illuminance order by datetime desc")
+        result = self.cursor.fetchall()
+        print(result[0])
+        
+    def clear_illu(self):
+        self.cursor.execute("delete from illuminance")
+        self.DB.commit()
         
     def __del__(self):
         self.DB.close()

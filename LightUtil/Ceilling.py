@@ -1,5 +1,5 @@
-from Led import Led
-from Base import Base
+from LightUtil.Led import Led
+from LightUtil.Base import Base
 import time
 
 class Ceilling(Base):
@@ -35,7 +35,7 @@ class Ceilling(Base):
             self.led_list_on(self.front_led,int(front_light))
             self.led_list_on(self.middle_led,int(mid_light))
             self.led_list_on(self.back_led,int(back_light))
-            time.sleep(0.1)
+            time.sleep(0.01)
         self.led_list_on(self.front_led,int(front))
         self.led_list_on(self.middle_led,int(mid))
         self.led_list_on(self.back_led,int(back))
