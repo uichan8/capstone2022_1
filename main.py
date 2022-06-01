@@ -1,7 +1,6 @@
 from time import *
 
 #object class
-from turtle import st
 from LightUtil.Ceilling import Ceilling
 from LightUtil.Sign import Sign
 
