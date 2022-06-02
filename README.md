@@ -64,3 +64,5 @@ Python
 sudo apt install libgfortran5 libatlas3-base
 sudo apt-get install libatlas-base-dev
 ```
+# TrobleShooting
+1. 마리아 DB 원격접속 접근 거부 https://m.blog.naver.com/wlsdml1103/221159758141
