@@ -3,7 +3,7 @@ from time import *
 
 class DB_manager:
     def __init__(self,ip = 'localhost'):
-        self.DB = sql.connect(host = ip, user = 'root', password = '1234', db='store')
+        self.DB = sql.connect(host = ip, port = 3306, user = 'root', password = '1234', db='store')
         self.cursor = self.DB.cursor()
     
     #for temp table
@@ -54,8 +54,6 @@ class DB_manager:
         self.cursor.execute("delete from illuminance")
         self.DB.commit()
         
-    def __del__(self):
-        self.DB.close()
         
         
         
