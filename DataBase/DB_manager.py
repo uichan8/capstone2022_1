@@ -24,6 +24,7 @@ class DB_manager:
 
     #for camera table
     def update_camera(self, outcamera, incamera):
+        """camera state must be boolean"""
         time_data = localtime(time())
         time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + str(time_data.tm_min)
         self.cursor.execute(f"insert into temp values('{time_str}','{outcamera}','{incamera}');")
