@@ -37,7 +37,7 @@ def main():
         #상태 판별
         if   pri_eco_switch.state or (set_time.is_eco_time() and on_off_switch.state):
             mode = 'eco'
-        elif on_off_switch.state:
+        elif on_off_switch.state or out_store:
             mode = 'on'
         else:
             mode = 'off'
