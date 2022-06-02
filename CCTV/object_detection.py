@@ -76,10 +76,12 @@ def realtime_detection():
         frame = visualize(frame, detection_result[:, :4], detection_result[:, 4], detection_result[:, 5], conf=score_thr, class_names=classes)
         
         #update state
-        #if np.max(detection_result[:, 4] >= score_thr):
-        #    print(1)
-        #else :
-        #    print(0)
+        if np.max(detection_result[:, 4] >= score_thr):
+            db.update_camera('True', 'True')
+            print('True')
+        else :
+            db.update_camera('False', 'False')
+            print('False')
         
         
         #print_image

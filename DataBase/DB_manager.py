@@ -2,8 +2,8 @@ import pymysql as sql
 from time import *
 
 class DB_manager:
-    def __init__(self):
-        self.DB = sql.connect(host = 'localhost', user = 'root', password = '1234', db='store')
+    def __init__(self,ip = 'localhost'):
+        self.DB = sql.connect(host = ip, user = 'root', password = '1234', db='store')
         self.cursor = self.DB.cursor()
     
     #for temp table

@@ -5,7 +5,6 @@ class Led:
     pin_num = 0
 
     def __init__(self, led_num, frequency = 50):
-
         self.pin_num = led_num
         GPIO.setwarnings(False) #IMPORTANT
         GPIO.setmode(GPIO.BCM)
