@@ -32,7 +32,7 @@ def main():
         #상태 업데이트
         on_off_switch.update()
         pri_eco_switch.update()
-        out_store,_ = db.read_last_camera()
+        #out_store,_ = db.read_last_camera()
 
         #상태 판별
         if   pri_eco_switch.state :#or (set_time.is_eco_time() and on_off_switch.state):
