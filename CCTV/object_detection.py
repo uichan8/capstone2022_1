@@ -20,6 +20,7 @@ def realtime_detection():
 
     #DataBase setting
     db = DB_manager(ip = '192.168.75.20')
+    db.clear_camera()
     db.update_camera('0', '0')
 
     #NCS2 setting
@@ -85,6 +86,7 @@ def realtime_detection():
         #write DB
         if past_state != present_state:
             db.update_camera(f'{present_state}',f'{present_state}')
+            
         past_state = present_state
 
         #print_image
