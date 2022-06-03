@@ -16,13 +16,13 @@ def main():
     objects = [ceilling, sign]
 
     #input objects
-    on_off_switch = Switch(3)
-    pri_eco_switch = Switch(9) #this is for presentation
+    on_off_switch = Switch(13)
+    pri_eco_switch = Switch(19) #this is for presentation
 
     #settings
-    set_time = User_time_set(0,0) #시작시간 종료시간 설정
+    set_time = User_time_set() #시작시간 종료시간 설정
     db = DB_manager()
-    db.update_camera('0','0')
+    #db.update_camera('0','0')
 
     #속성(휘발성)
     mode = "off" #매장 내 조명 on/off/eco(절전)
@@ -31,14 +31,17 @@ def main():
 
     while True:
         #상태 업데이트
+        db = DB_manager()
         on_off_switch.update()
         pri_eco_switch.update()
         out_store,_ = db.read_last_camera()
+        print(f"eco time : {set_time.is_eco_time()}")
+        print(f"cam : {out_store}")
 
         #상태 판별
-        if   pri_eco_switch.state or (set_time.is_eco_time() and on_off_switch.state):
+        if   pri_eco_switch.state or (set_time.is_eco_time() and on_off_switch.state and not out_store):
             mode = 'eco'
-        elif on_off_switch.state or out_store:
+        elif on_off_switch.state:
             mode = 'on'
         else:
             mode = 'off'
@@ -51,7 +54,8 @@ def main():
         elif mode == 'eco':
             [object.eco_mode() for object in objects]
 
-        print(mode)
+        print(f"mode : {mode}")
+        print("----------------------------")
 
 if __name__ == "__main__":
     main()
