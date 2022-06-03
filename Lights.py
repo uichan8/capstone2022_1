@@ -11,13 +11,13 @@ from DataBase.DB_manager import DB_manager
 
 def main():
     #output objects
-    ceilling = Ceilling([18],[23],[24])
+    ceilling = Ceilling([18],[23],[25])
     sign     = Sign([16],[20])
     objects = [ceilling, sign]
 
     #input objects
-    on_off_switch = Switch(12)
-    pri_eco_switch = Switch(13) #this is for presentation
+    on_off_switch = Switch(3)
+    pri_eco_switch = Switch(9) #this is for presentation
 
     set_time = User_time_set() #시작시간 종료시간 설정
 
@@ -35,9 +35,9 @@ def main():
         out_store,_ = db.read_last_camera()
 
         #상태 판별
-        if   pri_eco_switch.state or (set_time.is_eco_time() and on_off_switch.state):
+        if   pri_eco_switch.state :#or (set_time.is_eco_time() and on_off_switch.state):
             mode = 'eco'
-        elif on_off_switch.state or out_store:
+        elif on_off_switch.state :#or out_store:
             mode = 'on'
         else:
             mode = 'off'
