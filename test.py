@@ -4,7 +4,7 @@ from LightUtil.Sign import Sign
 
 def check_db():
     db = DB_manager(ip = '192.168.75.20')
-    db.update_camera(True,True)
+    db.update_camera('1','1')
     print(db.read_last_camera())
     db.clear_camera()
     print(db.read_last_camera())

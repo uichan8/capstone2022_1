@@ -20,6 +20,7 @@ def realtime_detection():
 
     #DataBase setting
     db = DB_manager(ip = '192.168.75.20')
+    db.update_camera('0', '0')
 
     #NCS2 setting
     ie = IECore()
@@ -38,7 +39,7 @@ def realtime_detection():
     classes = ["person", "bicycle", "car"]
     score_thr = 0.7
     nms_thr = 0.7
-
+    past_state = 0  
 
     while True:
         start = time()
@@ -77,13 +78,15 @@ def realtime_detection():
         
         #update state
         if np.max(detection_result[:, 4] >= score_thr):
-            db.update_camera('True', 'True')
-            print('True')
+            present_state = 1
         else :
-            db.update_camera('False', 'False')
-            print('False')
+            present_state = 0
         
-        
+        #write DB
+        if past_state != present_state:
+            db.update_camera(f'{present_state}',f'{present_state}')
+        past_state = present_state
+
         #print_image
         cv2.imshow("img", frame)
         
