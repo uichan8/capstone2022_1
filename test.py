@@ -8,6 +8,11 @@ def check_db():
     print(db.read_last_camera())
     db.clear_camera()
     print(db.read_last_camera())
+    
+def add_db():
+    db = DB_manager(ip = '192.168.75.20')
+    db.update_camera('1','1')
+    print(db.read_last_camera())
 
 def check_light():
     ceilling = Ceilling([18],[23],[25])
@@ -25,4 +30,4 @@ def check_sendor():
 
 
 if __name__ == '__main__':
-    check_db()
+    add_db()
