@@ -10,10 +10,10 @@ class Switch():
         GPIO.setwarnings(False) #IMPORTANT
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self._pin_num, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-        self.state = True if GPIO.input(self._pin_num) == GPIO.HIGH else False
+        self.state = True if GPIO.output(self._pin_num) == GPIO.HIGH else False
         
     def update(self):
-        self.state = True if GPIO.input(self._pin_num) == GPIO.HIGH else False
+        self.state = True if GPIO.output(self._pin_num) == GPIO.HIGH else False
 
     @property
     def state(self):
