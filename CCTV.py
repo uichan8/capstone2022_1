@@ -1,4 +1,4 @@
-from CCTV.object_detection import realtime_detection
+from CCTVUtils.object_detection import realtime_detection
 
 def main():
     realtime_detection()
