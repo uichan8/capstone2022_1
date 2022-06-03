@@ -40,7 +40,8 @@ def realtime_detection():
     classes = ["person", "bicycle", "car"]
     score_thr = 0.7
     nms_thr = 0.7
-    past_state = 0  
+    past_state = 0
+    val = 0
 
     while True:
         start = time()
@@ -88,6 +89,8 @@ def realtime_detection():
             db.update_camera(f'{present_state}',f'{present_state}')
             
         past_state = present_state
+        val += 1
+        val % = 10
 
         #print_image
         cv2.imshow("img", frame)
