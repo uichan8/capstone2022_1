@@ -10,8 +10,8 @@ def check_db():
     print(db.read_last_camera())
 
 def check_light():
-    ceilling = Ceilling([],[],[])
-    sign = Sign([],[])
+    ceilling = Ceilling([18],[23],[25])
+    sign = Sign([16],[20])
     objects = [ceilling, sign]
 
     [object.on_mode() for object in objects]
