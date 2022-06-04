@@ -42,6 +42,8 @@ def realtime_detection():
     nms_thr = 0.7
     past_state = 0
     val = 0
+    count = 0
+    wait = 5*5
 
     while True:
         start = time()
@@ -81,7 +83,10 @@ def realtime_detection():
         #update state
         if np.max(detection_result[:, 4] >= score_thr):
             present_state = 1
-        else :
+            count = 0
+        elif count < wait:
+            count += 1
+        else:
             present_state = 0
         
         #write DB
