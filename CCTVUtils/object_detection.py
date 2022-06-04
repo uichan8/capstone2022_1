@@ -14,9 +14,9 @@ from DataBase.DB_manager import DB_manager
 def realtime_detection():
     #camera setting
     cap = cv2.VideoCapture(0)
-    et_val, frame = cap.read()
-    cv2.imshow("img", frame)
-    cv2.waitKey(0) == 24
+    #et_val, frame = cap.read()
+    #cv2.imshow("img", frame)
+    #cv2.waitKey(0) == 24
 
     #DataBase setting
     db = DB_manager(ip = '192.168.75.20')
@@ -25,7 +25,7 @@ def realtime_detection():
 
     #NCS2 setting
     ie = IECore()
-    model      = ie.read_network(model='yolox_tiny.xml', weights = 'yolox_tiny.bin')
+    model      = ie.read_network(model='model/yolox_tiny.xml', weights = 'model/yolox_tiny.bin')
     network    = ie.load_network(network=model, device_name='MYRIAD')
     input_key  = list(network.input_info)[0]
     output_key = list(network.outputs.keys())[0]
@@ -41,6 +41,7 @@ def realtime_detection():
     score_thr = 0.7
     nms_thr = 0.7
     past_state = 0
+    present_state = 0
     val = 0
     count = 0
     wait = 5*5
