@@ -21,7 +21,7 @@ def realtime_detection():
     #DataBase setting
     db = DB_manager(ip = '192.168.75.20')
     db.clear_camera()
-    db.update_camera('0', '0')
+    db.update_camera('0', '0','0')
 
     #NCS2 setting
     ie = IECore()
@@ -92,6 +92,7 @@ def realtime_detection():
         #write DB
         if past_state != present_state:
             db.update_camera(f'{present_state}',f'{present_state}',f'{val}')
+            print(f"update to : {present_state}")
             
         past_state = present_state
         val += 1
@@ -104,4 +105,4 @@ def realtime_detection():
             break
         
         end = time()
-        print(1/(end-start))
+        fps = 1/(end-start)
