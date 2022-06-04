@@ -1,14 +1,12 @@
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
 *$py.class
 
 # C extensions
 *.so
 
 # Distribution / packaging
-.Python
 build/
 develop-eggs/
 dist/
@@ -47,7 +45,6 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
-*.py,cover
 .hypothesis/
 .pytest_cache/
 cover/
@@ -182,7 +179,3 @@ $RECYCLE.BIN/
 *.msix
 *.msm
 *.msp
-
-#rasbian
-*.pyc
-*.pyo

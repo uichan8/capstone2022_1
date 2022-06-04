@@ -21,8 +21,6 @@ def main():
 
     #settings
     set_time = User_time_set() #시작시간 종료시간 설정
-    db = DB_manager()
-    #db.update_camera('0','0')
 
     #속성(휘발성)
     mode = "off" #매장 내 조명 on/off/eco(절전)
@@ -39,12 +37,12 @@ def main():
         print(f"cam : {out_store}")
 
         #상태 판별
-        if   pri_eco_switch.state or (set_time.is_eco_time() and on_off_switch.state and not out_store):
-            mode = 'eco'
-        elif on_off_switch.state:
-            mode = 'on'
-        else:
+        if not on_off_switch.state:
             mode = 'off'
+        elif   pri_eco_switch.state or (set_time.is_eco_time() and on_off_switch.state and not out_store):
+            mode = 'eco'
+        else:
+            mode = 'on'
 
         #기기제어
         if   mode == 'on':
