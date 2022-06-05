@@ -26,7 +26,7 @@ class DB_manager:
     def update_camera(self, outcamera, incamera , val):
         """camera state must be boolean"""
         time_data = localtime(time())
-        time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + str(time_data.tm_min) + ":" + str(time_data.tm_sec) + "/"+ str(val)
+        time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + f"{time_data.tm_min:2}" + ":" + f"{time_data.tm_sec:2}" + "/"+ str(val)
         self.cursor.execute(f"insert into camera values('{time_str}','{outcamera}','{incamera}');")
         self.DB.commit()
 
