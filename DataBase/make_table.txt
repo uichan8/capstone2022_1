@@ -1,3 +1,7 @@
+/*
+수정사항 1 카메라 그냥 종류별로 DB를 따로 생성해야됨
+*/
+
 //DB
 sudo apt install mariadb-server mariadb-client
 pip3 install pymysql

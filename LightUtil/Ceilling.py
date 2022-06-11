@@ -3,7 +3,13 @@ from LightUtil.Base import Base
 import time
 
 class Ceilling(Base):
-    """천장의 조명을 조절해주는 클래스 입니다."""
+    """
+    천장의 조명을 조절해주는 클래스 입니다.
+        input :
+            front(list)  : 천장 앞라인의 조명의 입력 핀들의 번호들을 입력 합니다.
+            middle(list) : 천장 중간라인의 조명의 입력 핀들의 번호들을 입력 합니다.
+            back(list)   : 천장 뒷라인의 조명의 입력 핀들의 번호들을 입력 합니다.
+    """
     front_led  = []
     middle_led = []
     back_led   = []
@@ -44,12 +50,15 @@ class Ceilling(Base):
         self.back_state = back
     
     def eco_mode(self):
+        """매장 내의 조명들을 절전모드로 설정 합니다."""
         self.change_ceilling_state(100,40,10)
     
     def on_mode(self):
+        """매장 내의 조명들을 밝게 킵니다."""
         self.change_ceilling_state(100,100,100)
     
     def off_mode(self):
+        """매장 내의 조명들을 끕니다."""
         self.change_ceilling_state(0,0,0)
 
     def check_power(self):
