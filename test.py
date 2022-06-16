@@ -25,8 +25,9 @@ def check_light():
     input()
     [object.eco_mode() for object in objects]
 
-def check_sendor():
-    pass
+def check_sensor():
+    db = DB_manager(ip = '192.169.75.2')
+    print(db.read_temp_humi())
 
 
 if __name__ == '__main__':
