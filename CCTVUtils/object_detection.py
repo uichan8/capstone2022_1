@@ -14,9 +14,6 @@ from DataBase.DB_manager import DB_manager
 def realtime_detection():
     #camera setting
     cap = cv2.VideoCapture(0)
-    #et_val, frame = cap.read()
-    #cv2.imshow("img", frame)
-    #cv2.waitKey(0) == 24
 
     #DataBase setting
     db = DB_manager(ip = '192.168.75.20')
@@ -48,7 +45,6 @@ def realtime_detection():
 
     while True:
         start = time()
-        db = DB_manager(ip = '192.168.75.20')
         #read image from camera
         ret_val, frame = cap.read()
         if ret_val == False:

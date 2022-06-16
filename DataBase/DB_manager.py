@@ -7,18 +7,18 @@ class DB_manager:
         self.cursor = self.DB.cursor()
     
     #for temp table
-    def update_temp(self, temp, humi):
+    def update_temp_humi(self, temp, humi):
         time_data = localtime(time())
         time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + str(time_data.tm_min) + ":" + str(time_data.tm_sec)
         self.cursor.execute(f"insert into temp values('{time_str}','{temp}','{humi}');")
         self.DB.commit()
 
-    def read_last_temp(self):
+    def read_last_temp_humi(self):
         self.cursor.execute("select * from temp order by datetime desc")
         result = self.cursor.fetchall()
         print(result[0])
         
-    def clear_temp(self):
+    def clear_temp_humi(self):
         self.cursor.execute("delete from temp")
         self.DB.commit()
 
