@@ -1,4 +1,4 @@
-from LightUtil.Led3 import Led3 as Led
+from LightUtil.Led3_2 import Led3
 from LightUtil.Base import Base
 import time
 
@@ -23,9 +23,9 @@ class Sign(Base):
             self.sub_led.append(Led(i))
 
     @staticmethod
-    def led_list_on(list,Brightness_r, Brightness_g, Brightness_b):
+    def led_list_on(list,pwm):
         for led in list:
-            led.on(Brightness_r, Brightness_g, Brightness_b)
+            led.on(pwm)
 
     def change_ceilling_state(self,main,sub):
         for i in range(1,30):
@@ -34,8 +34,8 @@ class Sign(Base):
             self.led_list_on(self.main_led,int(main_light))
             self.led_list_on(self.sub_led,int(sub_light))
             time.sleep(0.01)
-        self.led_list_on(self.main_led,int(main), int(main), int(main))
-        self.led_list_on(self.sub_led,int(sub), int(main), int(main))
+        self.led_list_on(self.main_led,int(main))
+        self.led_list_on(self.sub_led,int(sub))
 
         self.main_state = main
         self.sub_state = sub
