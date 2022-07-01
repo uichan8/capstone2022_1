@@ -34,10 +34,9 @@ def main():
         on_off_switch.update()
         pri_eco_switch.update()
         out_store = db.read_last("camera")
-        print(out_store)#llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
-        out_store = int(out_store)
+        outstore = out_store[1]
         print(f"eco time : {set_time.is_eco_time()}")
-        print(f"cam : {out_store}")
+        print(f"cam : {out_store[1]}")
 
         #상태 판별
         if not on_off_switch.state:
