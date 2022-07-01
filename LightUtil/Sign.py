@@ -1,4 +1,4 @@
-from LightUtil.Led import Led
+from LightUtil.Led3 import Led3 as Led
 from LightUtil.Base import Base
 import time
 
@@ -18,9 +18,9 @@ class Sign(Base):
 
     def __init__(self,main:list,sub:list):
         for i in main:
-            self.main_led.append(Led(i))
+            self.main_led.append(Led(i,[1,2,3]))
         for i in sub:
-            self.sub_led.append(Led(i))
+            self.sub_led.append(Led(i,[2,3,4]))
 
     @staticmethod
     def led_list_on(list,pwm):

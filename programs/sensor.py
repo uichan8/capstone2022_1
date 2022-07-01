@@ -14,7 +14,8 @@ def main():
             #update Temperature and humidity
             temp = dht.getTemp()
             humi = dht.getHumi()
-            db.update_temp_humi(temp, humi)
+            db.update("temperture",temp)
+            db.update("humidity",humi)
 
 if __name__ == "__main__":
     main()

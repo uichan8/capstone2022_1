@@ -21,7 +21,6 @@ var/
 wheels/
 share/python-wheels/
 *.egg-info/
-.installed.cfg
 *.egg
 MANIFEST
 
@@ -179,3 +178,6 @@ $RECYCLE.BIN/
 *.msix
 *.msm
 *.msp
+
+#mac temp files
+.DS_store

@@ -11,14 +11,14 @@ from CCTVUtils.DetectionUtils.visualize import visualize
 
 from DataBase.DB_manager import DB_manager
 
-def realtime_detection():
+def realtime_detection(camera_name = "camera"):
     #camera setting
     cap = cv2.VideoCapture(0)
 
     #DataBase setting
     db = DB_manager(ip = '192.168.75.20')
-    db.clear_camera()
-    db.update_camera('0', '0','0')
+    db.clear(camera_name)
+    db.update(camera_name,0,0)
 
     #NCS2 setting
     ie = IECore()
@@ -39,7 +39,6 @@ def realtime_detection():
     nms_thr = 0.7
     past_state = 0
     present_state = 0
-    val = 0
     count = 0
     wait = 5*5
 
@@ -89,16 +88,13 @@ def realtime_detection():
         
         #write DB
         if past_state != present_state:
-            db.update_camera(f'{present_state}',f'{present_state}',f'{val}')
+            db.update(camera_name,present_state)
             print(f"update to : {present_state}")
             
         past_state = present_state
-        val += 1
-        val %= 10
 
         #print_image
         cv2.imshow("img", frame)
-        
         if cv2.waitKey(1) == ord('q'):
             break
         
