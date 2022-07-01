@@ -16,9 +16,9 @@ def realtime_detection(camera_name = "camera"):
     cap = cv2.VideoCapture(0)
 
     #DataBase setting
-    db = DB_manager(ip = '192.168.75.20')
+    db = DB_manager(ip = '192.168.0.4')
     db.clear(camera_name)
-    db.update(camera_name,0,0)
+    db.update(camera_name,0)
 
     #NCS2 setting
     ie = IECore()
