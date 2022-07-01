@@ -33,8 +33,33 @@ class DB_manager:
     def command(self,command):
         self.cursor.execute(command)
         
-        
-        
+if __name__ == "__main__":
+    """for test database"""
+    #init db_manager
+    db = DB_manager()
+
+    #test camera table
+    print("test camera table.")
+    db.update("camera",1)
+    print(db.read_last("camera"))
+    db.clear("camera")
+    print("camera table is working!\n")
+
+    #test temperture table
+    print("test temperture table.")
+    db.update("temperture",36.5)
+    print(db.read_last("temperture"))
+    db.clear("temperture")
+    print("temperture table is working!\n")
+
+    #test humidity table
+    print("test humidity table")
+    db.update("humidity",50)
+    print(db.read_last("humidity"))
+    db.clear("humidity")
+    print("humidity table is working!\n")
+
+    print("all tables are working!")
         
         
         
