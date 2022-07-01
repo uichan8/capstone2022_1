@@ -10,9 +10,6 @@ from Utils.Switch import Switch
 from DataBase.DB_manager import DB_manager
 
 def main():
-    #setup DB
-    db = DB_manager()
-
     #output objects
     ceilling = Ceilling([18],[23],[25])
     sign     = Sign([16],[20])
@@ -31,9 +28,11 @@ def main():
 
     while True:
         #상태 업데이트
+        db = DB_manager()
         on_off_switch.update()
         pri_eco_switch.update()
         out_store = db.read_last("camera")
+        print(out_store)
         outstore = out_store[1]
         print(f"eco time : {set_time.is_eco_time()}")
         print(f"cam : {out_store[1]}")
