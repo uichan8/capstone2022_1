@@ -30,11 +30,11 @@ temperture float(3) NULL
 alter table temperture add primary key(datetime);
 
 //humidity
-CREATE TABLE humiditiy(
+CREATE TABLE humidity(
 datetime VARCHAR(20) NOT NULL,
 humiditiy INT(2) NULL
 );
-alter table humiditiy add primary key(datetime);
+alter table humidity add primary key(datetime);
 
 //camera
 //if you want more camera, chage name to distingish it.
