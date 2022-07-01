@@ -83,7 +83,11 @@ git clone https://github.com/uichan8/capstone2022_1.git
 ```shell
 pip3 install -r requierments.txt
 ```
-3. Database 폴더안에 make_db를 참고하여 db를 생성해줍니다.
+3. Terminal 을 들어가서 DB 관련 프로그램 을 설치 해 줍니다.  
+```shell
+sudo apt install mariadb-server mariadb-client
+```
+4. Database 폴더안에 make_db를 참고하여 db를 생성해줍니다.
 ## 코드 실행
 1. 같은 공유기에 DB기기에는 192.168.75.20 CCTV기기는 192.168.75.21 로 고정시킵니다. (코드 내에서 ip변경 가능 및 추후에 args로 넣을수 있도록 수정 예정)
 2. 먼저 CCTV로 쓸 기기에 `CCTV.py` 를 실행합니다.

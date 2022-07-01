@@ -5,58 +5,60 @@ class DB_manager:
     def __init__(self,ip = 'localhost'):
         self.DB = sql.connect(host = ip, port = 3306, user = 'root', password = '1234', db='store')
         self.cursor = self.DB.cursor()
-    
-    #for temp table
-    def update_temp_humi(self, temp, humi):
+
+    @staticmethod
+    def time():
         time_data = localtime(time())
-        time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + str(time_data.tm_min) + ":" + str(time_data.tm_sec)
-        self.cursor.execute(f"insert into temp values('{time_str}','{temp}','{humi}');")
+        milisec = f"{int(time()*100)%100:2}"
+        time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + f"{time_data.tm_min:2}" + ":" + f"{time_data.tm_sec:2}" + "/"+ milisec
+        return time_str
+
+    def update(self, DB_name, *args):
+        time_str = self.time()
+        arg_string = ""
+        for i in args:
+            arg_string += "," + str(i)
+        self.cursor.execute(f"insert into {DB_name} values('{time_str}'{arg_string});")
         self.DB.commit()
 
-    def read_last_temp_humi(self):
-        self.cursor.execute("select * from temp order by datetime desc")
+    def read_last(self,DB_name):
+        self.cursor.execute(f"select * from {DB_name} order by datetime desc")
         result = self.cursor.fetchall()
-        print(result[0])
-        
-    def clear_temp_humi(self):
-        self.cursor.execute("delete from temp")
+        return result[0]
+
+    def clear(self, DB_name):
+        self.cursor.execute(f"delete from {DB_name}")
         self.DB.commit()
 
-    #for camera table
-    def update_camera(self, outcamera, incamera , val):
-        """camera state must be boolean"""
-        time_data = localtime(time())
-        time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + f"{time_data.tm_min:2}" + ":" + f"{time_data.tm_sec:2}" + "/"+ str(val)
-        self.cursor.execute(f"insert into camera values('{time_str}','{outcamera}','{incamera}');")
-        self.DB.commit()
+        self.cursor.execute(command)
+        
+if __name__ == "__main__":
+    """for test database"""
+    #init db_manager
+    db = DB_manger()
 
-    def read_last_camera(self):
-        self.cursor.execute("select * from camera order by datetime desc")
-        result = self.cursor.fetchall()
-        return result[0][1],result[0][2]
-        
-    def clear_camera(self):
-        self.cursor.execute("delete from camera")
-        self.DB.commit()
+    #test camera table
+    print("test camera table.")
+    db.update("camera",1)
+    db.read_last("camera")
+    db.clear("camera")
+    print("camera table is working!\n")
 
-    #for illu table
-    def update_illu(self, outillu, inillu):
-        time_data = localtime(time())
-        time_str = str(time_data.tm_mon)+"/" + str(time_data.tm_mday) + " "+str(time_data.tm_hour)+":" + str(time_data.tm_min) + ":" + str(time_data.tm_sec)
-        self.cursor.execute(f"insert into illuminance values('{time_str}','{outillu}','{inillu}');")
-        self.DB.commit()
+    #test temperture table
+    print("test temperture table.")
+    db.update("temperture",36.5)
+    db.read_last("temperture")
+    db.clear("temperture")
+    print("temperture table is working!\n")
 
-    def read_last_illu(self):
-        self.cursor.execute("select * from illuminance order by datetime desc")
-        result = self.cursor.fetchall()
-        print(result[0])
-        
-    def clear_illu(self):
-        self.cursor.execute("delete from illuminance")
-        self.DB.commit()
-        
-        
-        
+    #test humidity table
+    print("test humidity table")
+    db.update("humiditiy",50)
+    db.read_last("humidity")
+    db.clear("humidity")
+    print("humidity table is working!\n")
+
+    print("all tables are working!")
         
         
         

@@ -24,7 +24,6 @@ def main():
 
     #속성(휘발성)
     mode = "off" #매장 내 조명 on/off/eco(절전)
-    #in_store = False bcaz of budget can't implement
     out_store = False 
 
     while True:
@@ -32,10 +31,11 @@ def main():
         db = DB_manager()
         on_off_switch.update()
         pri_eco_switch.update()
-        out_store,_ = db.read_last_camera()
-        out_store = int(out_store)
+        out_store = db.read_last("camera")
+        print(out_store)
+        outstore = out_store[1]
         print(f"eco time : {set_time.is_eco_time()}")
-        print(f"cam : {out_store}")
+        print(f"cam : {out_store[1]}")
 
         #상태 판별
         if not on_off_switch.state:

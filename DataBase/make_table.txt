@@ -1,7 +1,3 @@
-/*
-수정사항 1 카메라 그냥 종류별로 DB를 따로 생성해야됨
-*/
-
 //DB
 sudo apt install mariadb-server mariadb-client
 pip3 install pymysql
@@ -9,9 +5,17 @@ pip3 install pymysql
 //init DB(set ID and PASSWORDS)
 sudo mysql -u root
 use mysql;
-grant all privileges on *.* to 'project'@'uichan'identified by'1234';
-grant all privileges on *.* to 'project'@'localhost'identified by'1234';
+grant all privileges on *.* to 'root'@'%'identified by'1234';
+grant all privileges on *.* to 'root'@'localhost'identified by'1234';
 flush privileges;
+
+//re connetct DB
+ctrl + c
+sudo mysql -u root -p
+1234
+
+//check
+SELECT Host, User, Super_priv FROM mysql.user;
 
 //make DB
 create database store;
@@ -19,25 +23,30 @@ use store;
 
 //make table
 //temperture
-CREATE TABLE temp(
+CREATE TABLE temperture(
 datetime VARCHAR(20) NOT NULL,
-temp float(3) NULL,
-humi INT(2) NULL
+temperture float(3) NULL
 );
-alter table temp add primary key(datetime);
+alter table temperture add primary key(datetime);
+
+//humidity
+CREATE TABLE humidity(
+datetime VARCHAR(20) NOT NULL,
+humiditiy INT(2) NULL
+);
+alter table humidity add primary key(datetime);
 
 //camera
+//if you want more camera, chage name to distingish it.
 create table camera( 
 datetime VARCHAR(20) NOT NULL, 
-outcamera VARCHAR(2) NULL,
-incamera VARCHAR(2) NULL
+Detect VARCHAR(2) NULL
 );
 alter table camera add primary key (datetime);
 
 //illuminance
 create table illuminance( 
 datetime VARCHAR(20) NOT NULL, 
-outillu INT(4) NULL,
-inillu INT(4) NULL
+illu INT(4) NULL
 );
 alter table illuminance add primary key (datetime); 
