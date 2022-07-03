@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import board
 import neopixel
+import numpy as np
 
 class Led3:
     """
@@ -12,35 +13,32 @@ class Led3:
     led = None
     numofpixels = 0
     
-    def __init__(self, led3_num, number):
-        self.led3_pin = led3_num
-        self.numofpixels = number
-        self.led3 = neopixel.NeoPixel(self.led3_pin,self.numofpixels)
-        #, auto_write = False
+    def __init__(self):
+        self.led3_pin = 18
+        self.color_array = list(np.zeros((10,3)))
+    
+    @staticmethod
+    def clipping(Brightness):
+        if(0 > Brightness):
+            Brightness = 0
+        if(Brightness > 255):
+            Brightness = 255
+        return Brightness
 
-    def on(self,led3num =0,Brightness_r , Brightness_g , Brightness_b):
+    
+    def set_color(self,r , g ,b, number):
         """
         led를 킬때 쓰는 메소드 입니다.
             input :
                 Brightness(int) : 설정 할 밝기 (0 ~ 100) 을 입력합니다. default = 255
         """
-        if(0 > Brightness_r):
-            Brightness_r = 0
-        if(Brightness_r > 255):
-            Brightness_r = 255
-
-        if(0 > Brightness_g):
-            Brightness_g = 0
-        if(Brightness_g > 255):
-            Brightness_g = 255
-
-        if(0 > Brightness_b):
-            Brightness_b = 0
-        if(Brightness_b > 255):
-            Brightness_b = 255
-
-        self.led3.fill[Brightness_r, Brightness_g, Brightness_b]
-        self.led3.show()
+        self.color_array[number] = [self.clipping(r) ,self.clipping(g) ,self.clipping(b)]
+    
+    def on(self, brightness):
+        for i in range(9,0,-1):
+            pixel = neopixel.NeoPixel(board.D18,i)
+            pixel.fill(self.color_array[i])
+        pixel.show()
        
     def off(self, led3num=0):
         """
@@ -48,3 +46,8 @@ class Led3:
         """
         self.led3.fill[0, 0, 0]
         self.led3.show()
+        
+    def value(self,num=0):
+        self.led3.fill(np.array([Brightness_r, Brightness_g, Brightness_b])*num)
+
+    
