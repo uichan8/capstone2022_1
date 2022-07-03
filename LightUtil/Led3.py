@@ -1,36 +1,50 @@
 import RPi.GPIO as GPIO
+import board
+import neopixel
 
 class Led3:
     """
-    led 의 밝기를 조절하는 메소드 입니다.
-
+    3색 led 의 밝기를 조절하는 메소드 입니다.
         input :
-            led_num(int)   : led pin 번호
-            frequency(int) : led 의 주파수를 설정합니다. default = 100
+            led3_num(int)   : 3색 led pin 번호
+            number(int)     : 3색 led의 갯수
     """
     led = None
-    pin_num = 0
+    numofpixels = 0
+    
+    def __init__(self, led3_num, number):
+        self.led3_pin = led3_num
+        self.numofpixels = number
+        self.led3 = neopixel.NeoPixel(self.led3_pin,self.numofpixels)
+        #, auto_write = False
 
-    def __init__(self, led_num,color = [256,256,256], frequency = 100):
-        self.pin_num = led_num
-        GPIO.setwarnings(False) #IMPORTANT
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.pin_num, GPIO.OUT)
-        self.led = GPIO.PWM(self.pin_num, frequency)
-        self.led.start(0)
-        self.color = color
-
-    def on(self,Brightness = 100):
+    def on(self,led3num =0,Brightness_r , Brightness_g , Brightness_b):
         """
         led를 킬때 쓰는 메소드 입니다.
-
             input :
-                Brightness(int) : 설정 할 밝기 (0 ~ 100) 을 입력합니다. default = 100
+                Brightness(int) : 설정 할 밝기 (0 ~ 100) 을 입력합니다. default = 255
         """
-        #3색 led를 키는 코드
+        if(0 > Brightness_r):
+            Brightness_r = 0
+        if(Brightness_r > 255):
+            Brightness_r = 255
 
-    def off(self):
+        if(0 > Brightness_g):
+            Brightness_g = 0
+        if(Brightness_g > 255):
+            Brightness_g = 255
+
+        if(0 > Brightness_b):
+            Brightness_b = 0
+        if(Brightness_b > 255):
+            Brightness_b = 255
+
+        self.led3.fill[Brightness_r, Brightness_g, Brightness_b]
+        self.led3.show()
+       
+    def off(self, led3num=0):
         """
         led를 끌때 쓰는 메소드 입니다.
         """
-        #색 led를 끄는 코드
+        self.led3.fill[0, 0, 0]
+        self.led3.show()
