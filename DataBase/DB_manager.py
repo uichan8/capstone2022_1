@@ -30,6 +30,7 @@ class DB_manager:
         self.cursor.execute(f"delete from {DB_name}")
         self.DB.commit()
 
+    def close(self,command):
         self.cursor.execute(command)
         
 if __name__ == "__main__":

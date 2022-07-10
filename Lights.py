@@ -53,17 +53,22 @@ def main():
         if past_mode != mode:
             if   mode == 'on':
                 [object.on_mode() for object in objects]
+                db.update(table_name,0)
             elif mode == 'off':
                 [object.off_mode() for object in objects]
+                db.update(table_name,0)
             elif mode == 'eco':
                 [object.eco_mode() for object in objects]
-                
+                db.update(table_name,0)
         past_mode = mode
-    
 
         print(f"mode : {mode}")
         print("----------------------------")
 
 if __name__ == "__main__":
+    db = DB_manager()
+    table_name = None
     main()
+    db.update(table_name,0)  
+    
 
