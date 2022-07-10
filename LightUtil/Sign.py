@@ -17,8 +17,8 @@ class Sign(Base):
     main_led = [] # 항상 켜져있어야 하는 조명 = 중앙에 kookmin 에 붙어있는 조명
     sub_led  = [] # 사람 왔을 때 켜져있어야 하는 조명 = 주변 백라이트
     
-    color1 = [0,255,25]
-    color2 = [255,150,0]
+    color1 = [0,255,15]
+    color2 = [100,255,0]
 
     main_state = 0
     sub_state  = 0
@@ -68,6 +68,8 @@ class Sign(Base):
         return (self.main_state + self.sub_state) / 300 * self.max_power #대충한거라 나중에 수정해야함 나중에 수정해야함
     
 if __name__ == '__main__':
-    a = Sign([18],[16])
-    a.on_mode()
+    a = Sign([18],[12])
     a.eco_mode()
+    input()
+    a.on_mode()
+    input()

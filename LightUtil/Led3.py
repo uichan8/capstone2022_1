@@ -53,6 +53,5 @@ if __name__ == '__main__':
     a = Led3(1)
     a.set_color([255,0,0],1)
     a.on()
-    a.off()
 
     

@@ -11,7 +11,7 @@ class Led:
     led = None
     pin_num = 0
 
-    def __init__(self, led_num, frequency = 100):
+    def __init__(self, led_num, frequency = 200):
         self.pin_num = led_num
         GPIO.setwarnings(False) #IMPORTANT
         GPIO.setmode(GPIO.BCM)
