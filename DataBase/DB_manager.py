@@ -36,7 +36,7 @@ class DB_manager:
 if __name__ == "__main__":
     """for test database"""
     #init db_manager
-    db = DB_manger()
+    db = DB_manager()
 
     #test camera table
     print("test camera table.")

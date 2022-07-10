@@ -22,6 +22,7 @@ create database store;
 use store;
 
 //make table
+
 //temperture
 CREATE TABLE temperture(
 datetime VARCHAR(20) NOT NULL,
@@ -49,4 +50,18 @@ create table illuminance(
 datetime VARCHAR(20) NOT NULL, 
 illu INT(4) NULL
 );
-alter table illuminance add primary key (datetime); 
+alter table illuminance add primary key (datetime);
+
+//camera power
+CREATE TABLE camera_power(
+datetime VARCHAR(20) NOT NULL,
+power INT(8) NULL
+);
+alter table camera_power add primary key(datetime);
+
+//lights power
+CREATE TABLE lights_power(
+datetime VARCHAR(20) NOT NULL,
+power INT(8) NULL
+);
+alter table lights_power add primary key(datetime);
