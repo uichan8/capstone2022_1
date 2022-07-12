@@ -1,4 +1,5 @@
 from time import *
+import os
 from Utils.User_time_set import User_time_set
 
 #object class
@@ -8,6 +9,7 @@ from Utils.Switch import Switch
 
 #database class
 from DataBase.DB_manager import DB_manager
+table_name = 'lights_power'
 
 def main():
     #output objects
@@ -29,6 +31,7 @@ def main():
 
     while True:
         #상태 업데이트
+        os.system('clear')
         db = DB_manager()
         on_off_switch.update()
         pri_eco_switch.update()
@@ -67,7 +70,6 @@ def main():
 
 if __name__ == "__main__":
     db = DB_manager()
-    table_name = None
     main()
     db.update(table_name,0)  
     
