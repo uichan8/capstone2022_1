@@ -3,6 +3,7 @@ from time import *
 
 class DB_manager:
     def __init__(self,ip = 'localhost'):
+        print(ip)
         self.DB = sql.connect(host = ip, port = 3306, user = 'root', password = '1234', db='store')
         self.cursor = self.DB.cursor()
 

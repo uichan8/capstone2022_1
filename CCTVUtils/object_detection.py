@@ -11,12 +11,12 @@ from CCTVUtils.DetectionUtils.visualize import visualize
 
 from DataBase.DB_manager import DB_manager
 
-def realtime_detection(ip = '192.168.0.4', camera_name = "camera":)
+def realtime_detection(ip = '192.168.0.11', camera_name = "camera"):
     #camera setting
     cap = cv2.VideoCapture(0)
 
     #DataBase setting
-    db = DB_manager(ip)
+    db = DB_manager(ip = ip)
     db.clear(camera_name)
     db.update(camera_name,0)
 
