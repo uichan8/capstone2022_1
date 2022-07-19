@@ -1,6 +1,7 @@
 # capstone2022_1
 # 요약
  2022년 1학기 정일엽 교수님 캡스톤 디자인 수업 'light24'조의 코드 파일입니다. CCTV로부터 받아온 영상 정보로부터 객체탐지를 시행하여 사람이 있는지 없는지를 탐지하고, 매장 내의 조명을 조절하여 에너지를 관리하는 프로젝트입니다. 2022년 여수 엑스포에서 열리는 스마트 에너지 경진대회에서 금상을 수상하였습니다.  
+ ![대회 사진](https://github.com/uichan8/capstone2022_1/blob/main/pictures/%EB%8C%80%ED%9A%8C%20%EC%82%AC%EC%A7%84.png)
 
 # 작품 소개
  최근 들어 아이스크림 무인매장과, 편의점을 많이 보셨을것 입니다. 인건비 상승과 기술의 발전으로 24시간 무인매장이 늘어나고 있습니다. 하지만 이러한 매장들은 사람이 자주 오지 않는 밤에도, 불을 환하게 켜놓습니다. 저희는 이러한 것들이 큰 에너지 낭비라고 생각되었습니다.  
@@ -12,7 +13,7 @@
  이를 제어 할 수 있는 시스템은 10W의 정도의 전력 소비를합니다. 그리고 원래 CCTV를 관리하는 컴퓨터에 적용하면, 추가적인 비용없이도 제어가 가능할 것입니다. 매장설비를 다 뜯을 필요없이, 그기능을 하는 전구를 쓰거나 벽에있는 스위치에 장치를 달아도 쓸 수 있습니다. 비록 1,2개의 매장에서는 효과가 미미할것이라 생각하지만, 많은 가게들에 적용되면, 에너지 절약에 큰 효과가 있을 것이라 생각이됩니다.  
   
 ## 작품 요약 포스터
-![작품 요약 사진](https://github.com/uichan8/capstone2022_1/blob/main/pictures/%EC%BA%A1%EC%8A%A4%ED%86%A4_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg)
+![작품 요약 포스터](https://github.com/uichan8/capstone2022_1/blob/main/pictures/%EC%BA%A1%EC%8A%A4%ED%86%A4_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg)
  
 
 # 개발환경
@@ -122,6 +123,4 @@ sudo python3 Ess.py
 # TrobleShooting
 1. 마리아 DB 원격접속 접근 거부 https://m.blog.naver.com/wlsdml1103/221159758141
 2. DHT11 라즈베리파이 4 문제 https://stackoverflow.com/questions/63232072/cannot-import-name-beaglebone-black-driver-from-adafruit-dht
-
-# 활동사진
  
